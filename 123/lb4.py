@@ -66,9 +66,6 @@ for img_path in image_paths:
     orb_img = cv2.drawKeypoints(img, keypoints, None, color=(0, 255, 0), flags=0)
     cv2.imwrite(os.path.join(output_dir, "orb_keypoints", f"{name}.jpg"), orb_img)
 
-    print(f"Обработано изображение: {name}")
-    print(f"Найдено ключевых точек ORB: {len(keypoints)}")
-
 # 4. Сопоставление признаков на двух похожих изображениях
 if len(image_paths) >= 2:
     img1 = cv2.imread(str(image_paths[0]))
@@ -97,10 +94,9 @@ if len(image_paths) >= 2:
             # Сохраняем результат
             cv2.imwrite(os.path.join(output_dir, "feature_matching", "feature_matching.jpg"), match_img)
 
-            print(f"Найдено соответствий между изображениями: {len(matches)}")
         else:
             print("Не удалось извлечь дескрипторы для сопоставления")
     else:
         print("Не удалось загрузить изображения для сопоставления")
 
-print("Анализ признаков заверше.! Результаты сохранены в папке:", output_dir)
+print("Анализ признаков завершен! Результаты сохранены в папке:", output_dir)
